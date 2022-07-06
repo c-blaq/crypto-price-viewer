@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import axios from "axios";
-import coin from "../assets/images/coin-logo.png";
+
 import SearchCoin from "./SearchCoin";
 
 const CoinCard = () => {
