@@ -14,6 +14,7 @@ const SearchCoin = () => {
       `https://api.coingecko.com/api/v3/coins/${searchData.coins[0].id}`
     );
     setCoins(coinData);
+    console.log(coinData);
     searchRef.current.value = "";
   };
 
@@ -34,7 +35,7 @@ const SearchCoin = () => {
 
       {coins && (
         <div className="my-4 ">
-          <h2 className="font-bold text-gray-600 my-2">Result:</h2>
+          <h2 className="font-bold text-gray-600 my-2">Search result:</h2>
 
           <div className="bg-white rounded-lg shadow-md w-full lg:w-1/3 p-4">
             <div className=" uppercase">
@@ -53,10 +54,17 @@ const SearchCoin = () => {
               />
               <span className="text-3xl  my-3 sm:my-4 block">
                 <span className="text-gray-400">$</span>
-                {coins.market_data.current_price.usd}
+                {coins.market_data.current_price.usd.toFixed(2)}
               </span>
-              <span className="py-2 px-4 rounded-md bg-green-600 text-white">
-                {coins.market_data.price_change_percentage_24h}
+              <span
+                className={`py-2 px-4 rounded-md   ${
+                  coins.market_data.price_change_percentage_24h > 0
+                    ? "bg-green-600"
+                    : "bg-red-600"
+                } text-white`}
+              >
+                {coins.market_data.price_change_percentage_24h > 0 ? "+" : ""}
+                {coins.market_data.price_change_percentage_24h.toFixed(2)} %
               </span>
             </div>
           </div>
