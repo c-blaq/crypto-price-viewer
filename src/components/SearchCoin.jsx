@@ -4,18 +4,23 @@ import axios from "axios";
 const SearchCoin = () => {
   const searchRef = useRef();
   const [coins, setCoins] = useState(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleCoinSearch = async () => {
-    const { data: searchData } = await axios.get(
-      `https://api.coingecko.com/api/v3/search?query=${searchRef.current.value}`
-    );
+    try {
+      const { data: searchData } = await axios.get(
+        `https://api.coingecko.com/api/v3/search?query=${searchRef.current.value}`
+      );
 
-    const { data: coinData } = await axios.get(
-      `https://api.coingecko.com/api/v3/coins/${searchData.coins[0].id}`
-    );
-    setCoins(coinData);
-    console.log(coinData);
-    searchRef.current.value = "";
+      const { data: coinData } = await axios.get(
+        `https://api.coingecko.com/api/v3/coins/${searchData.coins[0].id}`
+      );
+      setCoins(coinData);
+      searchRef.current.value = "";
+    } catch {
+      setErrorMessage("Oops, search result not found!");
+      searchRef.current.value = "";
+    }
   };
 
   return (
@@ -33,6 +38,9 @@ const SearchCoin = () => {
         />
       </div>
 
+      {errorMessage && (
+        <p className="text-gray-600 my-4 ml-4">{errorMessage}</p>
+      )}
       {coins && (
         <div className="my-4 ">
           <h2 className="font-bold text-gray-600 my-2">Search result:</h2>
