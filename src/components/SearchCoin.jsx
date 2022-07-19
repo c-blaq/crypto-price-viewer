@@ -26,28 +26,30 @@ const SearchCoin = () => {
   return (
     <div className="m-auto sm:w-3/4 mb-8">
       <div className="flex flex-wrap sm:justify-center sm:gap-4 justify-between lg:justify-between lg:gap-0 items-center">
-        <label htmlFor="" className="text-gray-600 font-bold">
+        <label
+          htmlFor=""
+          className="text-gray-600  dark:text-gray-200 font-bold"
+        >
           Search for coin:
         </label>
         <input
           type="text"
           placeholder="Enter coin name"
-          className="p-2 w-full sm:w-2/3 lg:w-5/6 outline-none text-gray-500"
+          className="p-2 w-full sm:w-2/3 lg:w-5/6 outline-none text-gray-500  dark:text-gray-200 dark:bg-transparent dark:border dark:border-gray-600"
           ref={searchRef}
           onKeyUp={(e) => (e.key === "Enter" ? handleCoinSearch() : "")}
         />
       </div>
 
-      {errorMessage && (
-        <p className="text-gray-600 my-4 ml-4">{errorMessage}</p>
-      )}
-      {coins && (
+      {coins ? (
         <div className="my-4 ">
-          <h2 className="font-bold text-gray-600 my-2">Search result:</h2>
+          <h2 className="font-bold text-gray-600 my-2 dark:text-gray-200">
+            Search result:
+          </h2>
 
-          <div className="bg-white rounded-lg shadow-md w-full lg:w-1/3 p-4">
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md w-full lg:w-1/3 p-4">
             <div className=" uppercase">
-              <h2 className="text-[#9f9f9d] text-lg sm:text-xl ">
+              <h2 className="text-[#9f9f9d] text-lg sm:text-xl">
                 {coins.name}
               </h2>
             </div>
@@ -60,8 +62,8 @@ const SearchCoin = () => {
                 height={100}
                 className="block"
               />
-              <span className="text-3xl  my-3 sm:my-4 block">
-                <span className="text-gray-400">$</span>
+              <span className="text-3xl  dark:text-gray-200 my-3 sm:my-4 block">
+                <span className="text-gray-400 ">$</span>
                 {coins.market_data.current_price.usd.toFixed(2)}
               </span>
               <span
@@ -77,6 +79,12 @@ const SearchCoin = () => {
             </div>
           </div>
         </div>
+      ) : (
+        errorMessage && (
+          <p className="text-gray-600 my-4 ml-4 dark:text-gray-200">
+            {errorMessage}
+          </p>
+        )
       )}
     </div>
   );

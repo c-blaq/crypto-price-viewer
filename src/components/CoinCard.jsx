@@ -31,7 +31,9 @@ const CoinCard = () => {
       <SearchCoin />
 
       <div className="mt-8">
-        <h2 className="text-gray-600 font-bold sm:w-3/4 m-auto">Top Coins</h2>
+        <h2 className="text-gray-600 dark:text-gray-200 font-bold sm:w-3/4 m-auto">
+          Top Coins
+        </h2>
         <div className="flex gap-4  m-auto items-center mt-4 justify-center flex-wrap flex-shrink-0">
           {coins.map(
             (
@@ -47,7 +49,7 @@ const CoinCard = () => {
             ) =>
               index < 6 && (
                 <div
-                  className="bg-white rounded-lg shadow-md w-full sm:w-1/3 lg:w-1/4 p-4"
+                  className="bg-white dark:bg-gray-900 rounded-lg shadow-md w-full sm:w-1/3 lg:w-1/4 p-4"
                   key={id}
                 >
                   <div className=" uppercase">
@@ -64,7 +66,7 @@ const CoinCard = () => {
                       height={100}
                       className="block"
                     />
-                    <span className="text-3xl  my-3 sm:my-4 block">
+                    <span className="text-3xl dark:text-gray-200 my-3 sm:my-4 block">
                       <span className="text-gray-400">$</span>
                       {current_price.toFixed(2)}
                     </span>

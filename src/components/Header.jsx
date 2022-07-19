@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/images/coin-logo.png";
+import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 
-const Header = () => {
+const Header = ({ theme }) => {
+  const [darkMode, setDarkMode] = useState(false);
+
   return (
-    <header className="p-4  bg-gray-100 shadow-md ">
+    <header className="p-4  bg-gray-100 dark:bg-gray-900 shadow-md flex items-center justify-between">
       <img src={logo} alt="Logo" width={80} height={80} />
+      <div
+        className="text-2xl lg:text-3xl"
+        onClick={() => {
+          const mode = !darkMode;
+          setDarkMode(mode);
+          theme(mode ? "dark" : "light");
+        }}
+      >
+        {darkMode ? (
+          <MdOutlineLightMode className="text-white" />
+        ) : (
+          <MdDarkMode />
+        )}
+      </div>
     </header>
   );
 };
