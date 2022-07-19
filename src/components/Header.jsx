@@ -9,7 +9,7 @@ const Header = ({ theme }) => {
     <header className="p-4  bg-gray-100 dark:bg-gray-900 shadow-md flex items-center justify-between">
       <img src={logo} alt="Logo" width={80} height={80} />
       <div
-        className="text-2xl lg:text-3xl"
+        className="text-2xl lg:text-3xl cursor-pointer"
         onClick={() => {
           const mode = !darkMode;
           setDarkMode(mode);

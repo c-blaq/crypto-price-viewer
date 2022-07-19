@@ -5,10 +5,14 @@ import "./App.css";
 import Footer from "./components/Footer";
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(
+    () => localStorage.getItem("theme") || "light"
+  );
 
   useEffect(() => {
     document.documentElement.className = theme;
+
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   return (
